@@ -96,10 +96,9 @@ const Navitem = () => {
             fontSize={"sm"}
             fontWeight={400}
             variant={"link"}
-            href={"#"}
             color={"#052a62"}
           >
-            Sign In
+            <Link to={"/user/Sign-In"}>Sign In</Link>
           </Button>
           <Button
             display={{ base: "none", md: "inline-flex" }}
@@ -112,7 +111,7 @@ const Navitem = () => {
               bg: "#06419b",
             }}
           >
-            Sign Up
+            <Link to={"/user/login"}>Sign Up</Link>
           </Button>
         </Stack>
       </Flex>

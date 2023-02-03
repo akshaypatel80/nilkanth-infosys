@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Navitem from "../Components/UserNavbar/Navitem";
 import HomePage from "./UserPage/HomePage";
+import LoginPage from "./UserPage/LoginPage";
 
 const AllRouter = () => {
   return (
@@ -12,6 +13,15 @@ const AllRouter = () => {
           <>
             <Navitem />
             <HomePage />
+          </>
+        }
+      ></Route>
+      <Route
+        path="/user/login"
+        element={
+          <>
+            <Navitem />
+            <LoginPage />
           </>
         }
       ></Route>
