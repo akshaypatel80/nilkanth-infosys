@@ -8,8 +8,10 @@ app.use(express.json());
 app.use(cors());
 
 const userRouter = require("./router/user.router");
+const productRouter = require("./router/product.router");
 
 app.use("/user", userRouter);
+app.use("/product", productRouter);
 
 app.listen(port, async () => {
   try {

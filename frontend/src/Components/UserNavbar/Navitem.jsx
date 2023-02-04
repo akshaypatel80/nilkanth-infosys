@@ -1,15 +1,24 @@
 import {
+  Avatar,
   Box,
   Button,
   Collapse,
   Flex,
+  HStack,
   IconButton,
   Image,
   Input,
   InputGroup,
   InputRightElement,
+  Menu,
+  MenuButton,
+  MenuDivider,
+  MenuItem,
+  MenuList,
   Stack,
+  Text,
   useDisclosure,
+  VStack,
 } from "@chakra-ui/react";
 import React from "react";
 import DesktopNavbar from "./DesktopNavbar";
@@ -18,9 +27,14 @@ import { navdata } from "./navdata";
 import { MdClose, MdSearch, MdSubject } from "react-icons/md";
 import logo from "../../Logo/nilkanth-infosys.png";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { userLogout } from "../../Redux/userLogin/useLogin.action";
+import { FiChevronDown } from "react-icons/fi";
 const Navitem = () => {
   const { isOpen, onToggle } = useDisclosure();
-
+  const { isAuth, data } = useSelector((store) => store.userLogin);
+  const dispatch = useDispatch();
+  const user = JSON.parse(localStorage.getItem("userData")) || {};
   return (
     <Box>
       <Flex
@@ -85,35 +99,77 @@ const Navitem = () => {
             />
           </InputRightElement>
         </InputGroup>
-        <Stack
-          flex={{ base: 1, md: 0 }}
-          justify={"flex-end"}
-          direction={"row"}
-          spacing={6}
-        >
-          <Button
-            as={"a"}
-            fontSize={"sm"}
-            fontWeight={400}
-            variant={"link"}
-            color={"#052a62"}
+        {isAuth ? (
+          <Stack
+            flex={{ base: 1, md: 0 }}
+            justify={"flex-end"}
+            direction={"row"}
+            spacing={6}
           >
-            <Link to={"/user/Sign-In"}>Sign In</Link>
-          </Button>
-          <Button
-            display={{ base: "none", md: "inline-flex" }}
-            fontSize={"sm"}
-            fontWeight={600}
-            color={"white"}
-            bg={"#052a62"}
-            href={"#"}
-            _hover={{
-              bg: "#06419b",
-            }}
+            <Menu>
+              <MenuButton
+                py={2}
+                transition="all 0.3s"
+                _focus={{ boxShadow: "none" }}
+              >
+                <HStack>
+                  <FiChevronDown />
+                  <VStack
+                    display={{ base: "none", md: "flex" }}
+                    alignItems="flex-start"
+                    spacing="1px"
+                    ml="2"
+                  >
+                    <Text fontSize="sm">
+                      {data.first_name || user[0].first_name}
+                      {data.last_name || user[0].last_name}
+                    </Text>
+                  </VStack>
+                  <Box display={{ base: "none", md: "flex", lg: "none" }}>
+                    <FiChevronDown />
+                  </Box>
+                </HStack>
+              </MenuButton>
+              <MenuList bg={"white"} borderColor={"gray.200"}>
+                <MenuItem>Profile</MenuItem>
+                <MenuItem>cart</MenuItem>
+                <MenuDivider />
+                <MenuItem onClick={() => dispatch(userLogout())}>
+                  Sign out
+                </MenuItem>
+              </MenuList>
+            </Menu>
+          </Stack>
+        ) : (
+          <Stack
+            flex={{ base: 1, md: 0 }}
+            justify={"flex-end"}
+            direction={"row"}
+            spacing={6}
           >
-            <Link to={"/user/login"}>Sign Up</Link>
-          </Button>
-        </Stack>
+            <Button
+              as={"a"}
+              fontSize={"sm"}
+              fontWeight={400}
+              variant={"link"}
+              color={"#052a62"}
+            >
+              <Link to={"/user/Sign-In"}>Sign In</Link>
+            </Button>
+            <Button
+              display={{ base: "none", md: "inline-flex" }}
+              fontSize={"sm"}
+              fontWeight={600}
+              color={"white"}
+              bg={"#052a62"}
+              _hover={{
+                bg: "#06419b",
+              }}
+            >
+              <Link to={"/user/login"}>Sign Up</Link>
+            </Button>
+          </Stack>
+        )}
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>

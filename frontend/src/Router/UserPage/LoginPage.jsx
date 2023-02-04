@@ -32,11 +32,10 @@ const LoginPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(userLogin(loginCred));
-    console.log(loginCred);
   };
   useEffect(() => {
     if (isAuth) {
-      if (state.form) {
+      if (state) {
         naviget(state.form, { replace: true });
       } else {
         naviget("/");
