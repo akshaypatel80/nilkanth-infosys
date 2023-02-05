@@ -1,6 +1,7 @@
 export const navdata = [
   {
     label: "Laptop & All in One",
+    href: "/LaptopAllinOne",
     children: [
       {
         label: "HP",

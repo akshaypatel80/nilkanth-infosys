@@ -10,6 +10,7 @@ const productSchema = mongoose.Schema({
   Subcategory: String,
   Quantity: Number,
   Onsale: String,
+  rating: Number,
 });
 
 const Product = mongoose.model("product", productSchema);

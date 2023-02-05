@@ -20,4 +20,15 @@ const getAllProducts = async (req, res) => {
 
 Router.route("/").get(getAllProducts);
 
+const getSingleProducts = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const totalProduct = await Product.findById({ _id: id });
+    res.status(200).send({ success: true, totalProduct });
+  } catch (error) {
+    res.send({ error: error.message });
+  }
+};
+
+Router.route("/:id").get(getSingleProducts);
 module.exports = Router;
