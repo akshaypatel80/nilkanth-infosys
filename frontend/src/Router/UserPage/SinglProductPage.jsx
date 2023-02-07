@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 const getSinglProduct = async (id) => {
   try {
-    let res = await axios.get(`http://localhost:8080/product/${id}`);
+    let res = await axios.get(`https://nkif.onrender.com/product/${id}`);
     const data = await res.data;
     return data;
   } catch (error) {
