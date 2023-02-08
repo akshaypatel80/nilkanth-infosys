@@ -17,6 +17,22 @@ const LaptopCard = ({ laptopData }) => {
         <Button position="absolute" top={2} right={2} variant={"outline"}>
           <AiOutlineHeart size={"25px"} />
         </Button>
+        {laptopData.Onsale ? (
+          <Text
+            position="absolute"
+            top={2}
+            left={2}
+            bg={"green.400"}
+            // w={"10%"}
+            p={"2"}
+            color={"white"}
+            borderWidth="1px"
+            rounded="lg"
+            shadow="lg"
+          >
+            {laptopData.Onsale}
+          </Text>
+        ) : null}
         <Image
           src={laptopData.Thumbnail}
           //   alt={`Picture of ${data.name}`}
@@ -26,7 +42,9 @@ const LaptopCard = ({ laptopData }) => {
         <Stack>
           <Stack spacing="1">
             <Text fontWeight="medium" color={"gray.500"}>
-              {laptopData.Title}
+              <Link to={`/singlProduct/${laptopData._id}`}>
+                {laptopData.Title}
+              </Link>
             </Text>
           </Stack>
           <HStack>
@@ -47,20 +65,6 @@ const LaptopCard = ({ laptopData }) => {
               {laptopData.Subcategory}
             </Text>
           </HStack>
-        </Stack>
-
-        <Stack align="center">
-          <Button
-            colorScheme="blue"
-            width="full"
-            bg={"#052a62"}
-            _hover={{
-              bg: "#06419b",
-            }}
-          >
-            Add to cart
-          </Button>
-          <Link to={`/singlProduct/${laptopData._id}`}>Quick view</Link>
         </Stack>
       </Box>
     </Stack>
