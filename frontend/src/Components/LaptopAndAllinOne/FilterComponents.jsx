@@ -56,20 +56,6 @@ const FilterComponents = () => {
         >
           HP
         </Checkbox>
-        <Checkbox
-          value="Motivational"
-          onChange={handleFilterChang}
-          isChecked={category.includes("Motivational")}
-        >
-          Motivational
-        </Checkbox>
-        <Checkbox
-          value="Science_Fiction"
-          onChange={handleFilterChang}
-          isChecked={category.includes("Science_Fiction")}
-        >
-          Science Fiction
-        </Checkbox>
       </Flex>
       <Heading m={"20px 0px"} size={"lg"}>
         Sorting

@@ -5,7 +5,7 @@ import {
   GET_LAPTOP_SUCCESS,
 } from "./laptop.type";
 
-const mainUrl = "https://nkif.onrender.com";
+const mainUrl = "https://nilkanth-infosys.onrender.com";
 export const getLaptop = (params) => async (dispatch) => {
   dispatch({ type: GET_LAPTOP_REQUEST });
   console.log(params);

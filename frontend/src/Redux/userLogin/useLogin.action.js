@@ -1,7 +1,7 @@
 import axios from "axios";
 import { USER_LOGIN, USER_LOGIN_ERROR, USER_LOGOUT } from "./userLogin.type";
 // const mainUrl = process.env.REACT_APP_MAIN_URL;
-const mainUrl = "https://nkif.onrender.com";
+const mainUrl = "https://nilkanth-infosys.onrender.com";
 
 export const userLogin = (cred) => async (dispatch) => {
   console.log(cred);
