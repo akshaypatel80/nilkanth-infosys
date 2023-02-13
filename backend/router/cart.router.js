@@ -1,51 +1,28 @@
 const express = require("express");
-const CartItem = require("../model/cart.model");
 const { User } = require("../model/user.model");
 const Product = require("../model/product.model");
-const Router = express.Router();
+const Cart = require("../model/cart.model");
+const userAuth = require("../middleware/userAuthMiddleware");
+const cartRouter = express.Router();
+
 const createProduct = async (req, res) => {
-  const userId = req.params.userId;
-  let product = await Product.findById(req.body.product);
-  let user = await User.findById({ _id: userId });
-  let cart = user.cartitem;
   try {
-    if (x) {
-      res.status(200).send({ msg: "all redy" });
-      console.log(cart);
-    } else {
-      await Product.findByIdAndUpdate(product._id, {
-        Quantity: product.Quantity - req.body.Quantity,
-      });
-      cart = [...cart, product];
-      await User.findByIdAndUpdate({ _id: userId }, { cartitem: cart });
-      res.status(200).json(req.body);
+    let product = await Product.findById(req.body.product);
+    let userId = await User.findById(req.body.userID);
+    let cart = await Cart.findOne({ _id: req.params.id, user: userId });
+    if (product.Quantity < req.body.Quantity) {
+      res.status(400).send("Not enough quantity available");
+      return;
     }
+
+    await Cart.findByIdAndUpdate(cart._id, { Quantity: req.body.Quantity });
+    await Product.findByIdAndUpdate(product._id, {
+      Quantity: product.Quantity - (req.body.Quantity - cart.Quantity),
+    });
+    res.send("Quantity updated successfully");
   } catch (error) {
-    res.status(200).json({ msg: "wrong" });
+    res.status(400).send(error.message);
   }
 };
-const deleteProduct = async (req, res, next) => {
-  const userId = req.params.userId;
-  try {
-    // const savedproduct=await product.save();
-    try {
-      let user = await userModel.findById({ _id: userId });
-      let cart = user.cartitem;
-      console.log("this is from cart and this is old user:- ", user, cart);
-      newcart = cart.filter((elem) => {
-        return elem._id !== req.body._id;
-      });
-      await userModel.findByIdAndUpdate({ _id: userId }, { cartitem: newcart });
-      let sameuser = await userModel.findById({ _id: userId });
-      console.log("this is from cart and this is new user:- ", sameuser);
-    } catch (error) {
-      next(error);
-    }
-    res.status(200).json(req.body);
-  } catch (error) {
-    next(error);
-  }
-};
-Router.post("/add/:userId", createProduct);
-Router.delete("/delete/:userId", deleteProduct);
-module.exports = Router;
+cartRouter.post("/add", createProduct);
+module.exports = cartRouter;
