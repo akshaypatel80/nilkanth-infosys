@@ -132,7 +132,9 @@ const Navitem = () => {
               </MenuButton>
               <MenuList bg={"white"} borderColor={"gray.200"}>
                 <MenuItem>Profile</MenuItem>
-                <MenuItem>cart</MenuItem>
+                <MenuItem>
+                  <Link to={"/user/cart"}>cart</Link>
+                </MenuItem>
                 <MenuDivider />
                 <MenuItem onClick={() => dispatch(userLogout())}>
                   Sign out
@@ -154,7 +156,7 @@ const Navitem = () => {
               variant={"link"}
               color={"#052a62"}
             >
-              <Link to={"/user/Sign-In"}>Sign In</Link>
+              <Link to={"/user/signup"}>Sign up</Link>
             </Button>
             <Button
               display={{ base: "none", md: "inline-flex" }}
@@ -166,7 +168,7 @@ const Navitem = () => {
                 bg: "#06419b",
               }}
             >
-              <Link to={"/user/login"}>Sign Up</Link>
+              <Link to={"/user/login"}>Sign in</Link>
             </Button>
           </Stack>
         )}

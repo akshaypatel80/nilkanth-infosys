@@ -3,9 +3,11 @@ import { Route, Routes } from "react-router-dom";
 import DellLaptop from "../Components/LaptopAndAllinOne/DellLaptop";
 import HPLaptop from "../Components/LaptopAndAllinOne/HPLaptop";
 import Navitem from "../Components/UserNavbar/Navitem";
+import CartPage from "./UserPage/CartPage";
 import HomePage from "./UserPage/HomePage";
 import LaptopPage from "./UserPage/LaptopPage";
 import LoginPage from "./UserPage/LoginPage";
+import SignupPage from "./UserPage/SignupPage";
 import SinglProductPage from "./UserPage/SinglProductPage";
 
 const AllRouter = () => {
@@ -26,6 +28,15 @@ const AllRouter = () => {
           <>
             <Navitem />
             <LoginPage />
+          </>
+        }
+      ></Route>
+      <Route
+        path="/user/signup"
+        element={
+          <>
+            <Navitem />
+            <SignupPage />
           </>
         }
       ></Route>
@@ -62,6 +73,15 @@ const AllRouter = () => {
           <>
             <Navitem />
             <SinglProductPage />
+          </>
+        }
+      ></Route>
+      <Route
+        path="/user/cart"
+        element={
+          <>
+            <Navitem />
+            <CartPage />
           </>
         }
       ></Route>
