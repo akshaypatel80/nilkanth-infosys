@@ -1,10 +1,15 @@
 import axios from "axios";
-import { USER_LOGIN, USER_LOGIN_ERROR, USER_LOGOUT } from "./userLogin.type";
+import {
+  IS_LOADING,
+  USER_LOGIN,
+  USER_LOGIN_ERROR,
+  USER_LOGOUT,
+} from "./userLogin.type";
 // const mainUrl = process.env.REACT_APP_MAIN_URL;
 const mainUrl = "https://nilkanth-infosys.onrender.com";
 
 export const userLogin = (cred) => async (dispatch) => {
-  console.log(cred);
+  dispatch({ type: IS_LOADING });
   try {
     let res = await axios.post(`${mainUrl}/user/login`, cred);
     dispatch({ type: USER_LOGIN, payload: res.data });

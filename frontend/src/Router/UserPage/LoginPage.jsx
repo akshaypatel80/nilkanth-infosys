@@ -17,7 +17,7 @@ import { userLogin } from "../../Redux/userLogin/useLogin.action";
 const LoginPage = () => {
   const [loginCred, setLoginCred] = useState({});
   const dispatch = useDispatch();
-  const { isAuth, error } = useSelector((store) => store.userLogin);
+  const { isAuth, error, isLoading } = useSelector((store) => store.userLogin);
   const { state } = useLocation();
   const naviget = useNavigate();
   const toast = useToast();
@@ -100,17 +100,29 @@ const LoginPage = () => {
               <Input type="password" name="password" onChange={hanldeChange} />
             </FormControl>
             <Stack spacing={6} alignItems={"center"}>
-              <Button
-                width={"200px"}
-                bg={"#052a62"}
-                color={"white"}
-                _hover={{
-                  bg: "#06419b",
-                }}
-                type="submit"
-              >
-                Login
-              </Button>
+              {isLoading ? (
+                <Button
+                  isLoading
+                  loadingText="Loading"
+                  colorScheme="facebook"
+                  variant="outline"
+                  spinnerPlacement="end"
+                >
+                  Click me
+                </Button>
+              ) : (
+                <Button
+                  width={"200px"}
+                  bg={"#052a62"}
+                  color={"white"}
+                  _hover={{
+                    bg: "#06419b",
+                  }}
+                  type="submit"
+                >
+                  Login
+                </Button>
+              )}
             </Stack>
           </form>
         </Stack>

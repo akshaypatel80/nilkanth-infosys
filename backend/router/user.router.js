@@ -21,7 +21,7 @@ Router.post("/user-singnup", async (req, res) => {
           mobile,
         });
         await user.save();
-        res.status(200).send({ mag: "signup successfully" });
+        res.status(200).send({ msg: "signup successfully" });
       }
     });
   } catch (error) {

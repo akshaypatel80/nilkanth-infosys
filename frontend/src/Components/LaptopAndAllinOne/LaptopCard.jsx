@@ -41,7 +41,12 @@ const LaptopCard = ({ laptopData }) => {
 
         <Stack>
           <Stack spacing="1">
-            <Text fontWeight="medium" color={"gray.500"}>
+            <Text
+              fontWeight="medium"
+              color={"gray.500"}
+              height={"90px"}
+              overflow={"hidden"}
+            >
               <Link to={`/singlProduct/${laptopData._id}`}>
                 {laptopData.Title}
               </Link>
