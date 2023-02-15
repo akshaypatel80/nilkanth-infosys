@@ -18,8 +18,6 @@ const getAllProducts = async (req, res) => {
   }
 };
 
-Router.route("/").get(getAllProducts);
-
 const getSingleProducts = async (req, res) => {
   const id = req.params.id;
   try {
@@ -30,5 +28,6 @@ const getSingleProducts = async (req, res) => {
   }
 };
 
+Router.route("/").get(getAllProducts);
 Router.route("/:id").get(getSingleProducts);
 module.exports = Router;
