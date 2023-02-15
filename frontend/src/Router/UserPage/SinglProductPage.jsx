@@ -30,7 +30,7 @@ const SinglProductPage = () => {
   const [data, setData] = useState({});
   const [productQuntity, setProductQuntity] = useState(0);
   const user = JSON.parse(localStorage.getItem("userData"));
-  const { message } = useSelector((store) => store.cart);
+  const { message, isError } = useSelector((store) => store.cart);
   const dispatch = useDispatch();
   const toast = useToast();
   console.log(message);
@@ -41,19 +41,31 @@ const SinglProductPage = () => {
   }, [id]);
   const hendelAddtoCart = () => {
     const newcart = {
-      userID: user[0]._id,
+      userid: user[0]._id,
       product: data._id,
       Quantity: Number(productQuntity),
     };
+    console.log(newcart);
     dispatch(addToCartData(newcart));
-    toast({
-      title: "",
-      description: message,
-      status: "success",
-      duration: 9000,
-      isClosable: true,
-      position: "top",
-    });
+    if (!isError) {
+      toast({
+        title: "",
+        description: "Successfully Add Checout Cart ",
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+        position: "top",
+      });
+    } else {
+      toast({
+        title: "",
+        description: "Product already in cart",
+        status: "info",
+        duration: 9000,
+        isClosable: true,
+        position: "top",
+      });
+    }
   };
   const quantity = (total) => {
     let q = new Array(total).fill(1);

@@ -20,12 +20,12 @@ export const userLoginReducer = (state = initialValue, { type, payload }) => {
   switch (type) {
     case USER_LOGIN: {
       localStorage.setItem("userToken", payload.token);
-      localStorage.setItem("userData", JSON.stringify(payload.use));
+      localStorage.setItem("userData", JSON.stringify(payload.user));
       return {
         ...state,
         isAuth: true,
-        token: payload,
-        data: payload,
+        token: payload.token,
+        data: payload.user,
         error: false,
         isLoading: false,
       };
@@ -34,8 +34,8 @@ export const userLoginReducer = (state = initialValue, { type, payload }) => {
       return {
         ...state,
         isAuth: false,
-        token: payload,
-        isErrorMsg: payload,
+        token: payload.token,
+        isErrorMsg: payload.msg,
         data: payload,
         error: true,
         isLoading: false,

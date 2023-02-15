@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import DellLaptop from "../Components/LaptopAndAllinOne/DellLaptop";
 import HPLaptop from "../Components/LaptopAndAllinOne/HPLaptop";
 import Navitem from "../Components/UserNavbar/Navitem";
+import UserRequireAuth from "../hoc/UserRequireAuth";
 import CartPage from "./UserPage/CartPage";
 import HomePage from "./UserPage/HomePage";
 import LaptopPage from "./UserPage/LaptopPage";
@@ -70,19 +71,23 @@ const AllRouter = () => {
       <Route
         path="/singlProduct/:id"
         element={
-          <>
-            <Navitem />
-            <SinglProductPage />
-          </>
+          <UserRequireAuth>
+            <>
+              <Navitem />
+              <SinglProductPage />
+            </>
+          </UserRequireAuth>
         }
       ></Route>
       <Route
         path="/user/cart"
         element={
-          <>
-            <Navitem />
-            <CartPage />
-          </>
+          <UserRequireAuth>
+            <>
+              <Navitem />
+              <CartPage />
+            </>
+          </UserRequireAuth>
         }
       ></Route>
     </Routes>
