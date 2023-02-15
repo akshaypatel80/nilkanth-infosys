@@ -39,7 +39,7 @@ Router.post("/login", async (req, res) => {
       bcyrpt.compare(password, hase_pass, (err, result) => {
         if (result) {
           const token = jwt.sign({ userID: user[0]._id }, key);
-          res.send({ msg: "login successfull", token: token, use: user });
+          res.send({ msg: "login successfull", token: token, user: user });
         } else {
           res.status(400).send({ msg: "wrong credntials" });
         }
