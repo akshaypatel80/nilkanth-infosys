@@ -28,6 +28,36 @@ const getSingleProducts = async (req, res) => {
   }
 };
 
+Router.get("/get/all", async (req, res) => {
+  try {
+    const product = await Product.find();
+    res.status(200).send({ product: product });
+  } catch (error) {
+    res.status(500).send({ msg: "Something Went Wrong!" });
+  }
+});
+// delete Products into the database at url (http://localhost:8080/products/delete/id)
+
+Router.delete("/delete/:id", async (req, res) => {
+  const id = req.params.id;
+  try {
+    await Product.findByIdAndDelete({ _id: id });
+    res.status(200).send({ msg: "delete product successfully" });
+  } catch (error) {
+    res.status(500).send({ msg: "Something Went Wrong!" });
+  }
+});
+
+Router.patch("/update/:id", async (req, res) => {
+  const id = req.params.id;
+  const payload = req.body;
+  try {
+    await Product.findByIdAndUpdate({ _id: id }, payload);
+    res.status(200).send({ msg: "update product successfully" });
+  } catch (error) {
+    res.status(500).send({ msg: "Something Went Wrong!" });
+  }
+});
 Router.route("/").get(getAllProducts);
 Router.route("/:id").get(getSingleProducts);
 module.exports = Router;

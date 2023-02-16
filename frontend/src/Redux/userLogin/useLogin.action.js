@@ -6,7 +6,7 @@ import {
   USER_LOGOUT,
 } from "./userLogin.type";
 // const mainUrl = process.env.REACT_APP_MAIN_URL;
-const mainUrl = "http://localhost:8080";
+const mainUrl = "https://nilkanth-infosys.onrender.com";
 
 export const userLogin = (cred) => async (dispatch) => {
   dispatch({ type: IS_LOADING });

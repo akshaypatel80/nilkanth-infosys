@@ -3,7 +3,11 @@ import { Route, Routes } from "react-router-dom";
 import DellLaptop from "../Components/LaptopAndAllinOne/DellLaptop";
 import HPLaptop from "../Components/LaptopAndAllinOne/HPLaptop";
 import Navitem from "../Components/UserNavbar/Navitem";
+import AdminRequireAuth from "../hoc/AdminRequireAuth";
 import UserRequireAuth from "../hoc/UserRequireAuth";
+import AdminDshboardPage from "./AdminPage/AdminDshboardPage";
+import AdminLoginPage from "./AdminPage/AdminLoginPage";
+import AdminShowProduct from "./AdminPage/AdminShowProduct";
 import CartPage from "./UserPage/CartPage";
 import HomePage from "./UserPage/HomePage";
 import LaptopPage from "./UserPage/LaptopPage";
@@ -88,6 +92,31 @@ const AllRouter = () => {
               <CartPage />
             </>
           </UserRequireAuth>
+        }
+      ></Route>
+      <Route
+        path="/admin-login"
+        element={
+          <>
+            <Navitem />
+            <AdminLoginPage />
+          </>
+        }
+      ></Route>
+      <Route
+        path="/admin"
+        element={
+          <AdminRequireAuth>
+            <AdminDshboardPage />
+          </AdminRequireAuth>
+        }
+      ></Route>
+      <Route
+        path="/admin/product"
+        element={
+          <AdminRequireAuth>
+            <AdminShowProduct />
+          </AdminRequireAuth>
         }
       ></Route>
     </Routes>
