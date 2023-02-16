@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 const Router = express.Router();
 const key = process.env.adminKEY;
 Router.use(express.json());
-// admin sign-up with hase password in this url (http://localhost:8080/admin/admin-signup)
+// admin sign-up with hase password in this url (https://nilkanth-infosys.onrender.com/admin/admin-signup)
 
 Router.post("/admin-signup", async (req, res) => {
   const { email, password, first_name, last_name, avtar } = req.body;
@@ -31,7 +31,7 @@ Router.post("/admin-signup", async (req, res) => {
   }
 });
 
-// admin login with hase password in this url ("http://localhost:8080/admin/login")
+// admin login with hase password in this url ("https://nilkanth-infosys.onrender.com/admin/login")
 
 Router.post("/login", async (req, res) => {
   const { email, password } = req.body;

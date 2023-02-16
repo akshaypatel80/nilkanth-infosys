@@ -4,7 +4,7 @@ import {
   USER_SIGNUP_ERROR,
   USER_SIGNUP_LODING,
 } from "./userSingup.type";
-const mainUrl = "http://localhost:8080";
+const mainUrl = "https://nilkanth-infosys.onrender.com";
 export const signupUser = (cred) => async (dispatch) => {
   dispatch({ type: USER_SIGNUP_LODING });
   try {
