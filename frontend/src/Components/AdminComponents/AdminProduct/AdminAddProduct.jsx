@@ -11,46 +11,26 @@ import {
   Textarea,
   useToast,
 } from "@chakra-ui/react";
-import axios from "axios";
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { adminUpdateData } from "../../../Redux/AdminShowProduct/AdminShowProduct.action";
+import { addProduct } from "../../../Redux/AdminAddProduct/AdminAddProduct.action";
 
-const AdminUpdate = () => {
-  const { updatemsg } = useSelector((store) => store.adminShowProduct);
-  const toast = useToast();
-  const dispatch = useDispatch();
-  const { id } = useParams();
+const AdminAddProduct = () => {
   const [product, setProduct] = useState({});
-  const getdata = async (id) => {
-    try {
-      const res = await axios(
-        `https://nilkanth-infosys.onrender.com/product/${id}`
-      );
-      setProduct(res.data.totalProduct);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  useEffect(() => {
-    getdata(id);
-  }, [id]);
-
+  const { productData, msg } = useSelector((store) => store.adminAddProduct);
+  const dispatch = useDispatch();
+  const toast = useToast();
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(adminUpdateData(id, product));
+    dispatch(addProduct(product));
     toast({
-      title: "Product Update Successfully",
+      title: msg,
       status: "success",
       duration: 9000,
       isClosable: true,
       position: "top",
     });
   };
-
   const hanldeChange = (e) => {
     const { name, value } = e.target;
     setProduct({
@@ -58,10 +38,11 @@ const AdminUpdate = () => {
       [name]: value,
     });
   };
+  console.log(productData);
   return (
     <div>
       <Heading textAlign={"center"} pt={"20px"}>
-        Update Product
+        Add Product
       </Heading>
       <Flex justify={"center"} width={"100%"} bg={"whiteAlpha.800"} mt={"15"}>
         <form
@@ -86,7 +67,6 @@ const AdminUpdate = () => {
                 <Input
                   type="text"
                   name="Title"
-                  value={product.Title}
                   onChange={hanldeChange}
                   placeholder={"Title"}
                 />
@@ -98,7 +78,6 @@ const AdminUpdate = () => {
                 <Input
                   type="text"
                   name="Price"
-                  value={product.Price}
                   onChange={hanldeChange}
                   placeholder={"Product Price"}
                 />
@@ -116,7 +95,6 @@ const AdminUpdate = () => {
                 <Input
                   type="text"
                   name="Thumbnail"
-                  value={product.Thumbnail}
                   onChange={hanldeChange}
                   placeholder={"Image URL"}
                 />
@@ -128,7 +106,6 @@ const AdminUpdate = () => {
                 <Input
                   type="text"
                   name="StrikePrice"
-                  value={product.StrikePrice}
                   onChange={hanldeChange}
                   placeholder={"Strike Price"}
                 />
@@ -145,9 +122,8 @@ const AdminUpdate = () => {
                 <FormLabel>Main Category</FormLabel>
                 <Select
                   placeholder="Select option"
-                  name="Category"
-                  value={product.Category}
                   onChange={hanldeChange}
+                  name="Category"
                 >
                   <option value="LaptopAllinOne">Laptop & All inOne</option>
                   <option value="DesktopAccessories">
@@ -159,11 +135,7 @@ const AdminUpdate = () => {
             <Box width={{ base: "100%", sm: "100%" }}>
               <FormControl isRequired>
                 <FormLabel>Sub Category</FormLabel>
-                <Select
-                  onChange={hanldeChange}
-                  name="Subcategory"
-                  value={product.Subcategory}
-                >
+                <Select onChange={hanldeChange} name="Subcategory" category>
                   {product.Category === "LaptopAllinOne" && (
                     <option value="HP">HP</option>
                   )}
@@ -212,7 +184,6 @@ const AdminUpdate = () => {
                   placeholder="Select option"
                   onChange={hanldeChange}
                   name="Onsale"
-                  value={product.Onsale}
                 >
                   <option value="Sale!">Yes</option>
                   <option value="">No</option>
@@ -225,7 +196,6 @@ const AdminUpdate = () => {
                 <Input
                   type="number"
                   name="Quantity"
-                  value={product.Quantity}
                   onChange={hanldeChange}
                   placeholder={"Quantity"}
                 />
@@ -238,7 +208,6 @@ const AdminUpdate = () => {
               <Textarea
                 type="text"
                 name="Description"
-                value={product.Description}
                 onChange={hanldeChange}
                 placeholder={"Product Description"}
               />
@@ -270,4 +239,4 @@ const AdminUpdate = () => {
   );
 };
 
-export default AdminUpdate;
+export default AdminAddProduct;

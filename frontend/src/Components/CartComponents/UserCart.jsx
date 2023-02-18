@@ -35,6 +35,7 @@ const UserCart = () => {
           return (
             <CartProductCard
               product={ele.product._id}
+              productQunt={ele.product.Quantity}
               key={ele.product._id}
               qty={ele.Quantity}
               id={ele._id}
