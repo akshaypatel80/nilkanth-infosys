@@ -5,9 +5,11 @@ import HPLaptop from "../Components/LaptopAndAllinOne/HPLaptop";
 import Navitem from "../Components/UserNavbar/Navitem";
 import AdminRequireAuth from "../hoc/AdminRequireAuth";
 import UserRequireAuth from "../hoc/UserRequireAuth";
+import AdminAddProductPage from "./AdminPage/AdminAddProductPage";
 import AdminDshboardPage from "./AdminPage/AdminDshboardPage";
 import AdminLoginPage from "./AdminPage/AdminLoginPage";
 import AdminShowProduct from "./AdminPage/AdminShowProduct";
+import AdminUpdateProduct from "./AdminPage/AdminUpdateProduct";
 import CartPage from "./UserPage/CartPage";
 import HomePage from "./UserPage/HomePage";
 import LaptopPage from "./UserPage/LaptopPage";
@@ -116,6 +118,22 @@ const AllRouter = () => {
         element={
           <AdminRequireAuth>
             <AdminShowProduct />
+          </AdminRequireAuth>
+        }
+      ></Route>
+      <Route
+        path="/admin/addProduct"
+        element={
+          <AdminRequireAuth>
+            <AdminAddProductPage />
+          </AdminRequireAuth>
+        }
+      ></Route>
+      <Route
+        path="/admin/update/:id"
+        element={
+          <AdminRequireAuth>
+            <AdminUpdateProduct />
           </AdminRequireAuth>
         }
       ></Route>

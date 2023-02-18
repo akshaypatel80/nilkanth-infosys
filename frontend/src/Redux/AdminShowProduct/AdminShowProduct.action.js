@@ -21,6 +21,7 @@ export const adminShowProducts = (page) => async (dispatch) => {
     console.log(error.massage);
   }
 };
+// delete Product
 export const adminDeleteProduct = (id, page) => async (dispatch) => {
   try {
     let res = await axios.delete(`${mainUrl}/product/delete/${id}`, config);
@@ -30,6 +31,7 @@ export const adminDeleteProduct = (id, page) => async (dispatch) => {
     console.log(error);
   }
 };
+// update Product
 export const adminUpdateData = (id, data) => async (dispatch) => {
   try {
     let res = await axios.patch(

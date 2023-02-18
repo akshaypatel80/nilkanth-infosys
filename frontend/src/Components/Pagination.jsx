@@ -7,11 +7,11 @@ const Pagination = ({ totalPage, currentPage, handlePageChange }) => {
   let page = CreateArrayOfSize(totalPage).map((a, i) => {
     return (
       <Button
-        _hover={{
-          bg: "#02B862",
-        }}
-        bg={"green.600"}
+        bg={"#052a62"}
         color={"white"}
+        _hover={{
+          bg: "#06419b",
+        }}
         key={i + 1}
         disable={currentPage == i}
         onClick={() => handlePageChange(i + 1)}

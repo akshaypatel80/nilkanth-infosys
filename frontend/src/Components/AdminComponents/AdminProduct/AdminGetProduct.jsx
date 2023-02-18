@@ -38,10 +38,10 @@ const AdminGetProduct = () => {
       <Flex justifyContent={"flex-end"}>
         <Button
           variant={"solid"}
-          bg={"green.700"}
+          bg={"#052a62"}
           color={"white"}
           _hover={{
-            bg: "#02B862",
+            bg: "#06419b",
           }}
           mb={"20px"}
           leftIcon={<MdAddCircleOutline />}
@@ -55,12 +55,10 @@ const AdminGetProduct = () => {
         mt={"25px"}
       >
         <Table variant={"simple"}>
-          <Thead bg={"cyan.300"} fontWeight={"bold"}>
+          <Thead bg={"cyan.300"} fontWeight={"bold"} textAlign={"center"}>
             <Tr>
               <Th>Image</Th>
-              <Th width={"20%"} overflowWrap={"break-word"}>
-                Product Name
-              </Th>
+              <Th>Product Name</Th>
               <Th>Product Price</Th>
               <Th>Stocks</Th>
               <Th>Status</Th>

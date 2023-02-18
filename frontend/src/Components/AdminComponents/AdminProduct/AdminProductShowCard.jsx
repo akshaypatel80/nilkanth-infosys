@@ -16,13 +16,12 @@ const AdminProductShowCard = ({ id, img, title, price, stocks, page }) => {
       _hover={{
         bg: "gray.100",
       }}
+      // display={"block"}
     >
-      <Td width={"10%"}>
+      <Td maxWidth={"100%"} display={"block"}>
         <Image src={img} width={"100%"} />
       </Td>
-      <Td width={"10%"} overflowWrap={"break-word"} wordBreak={"break-all"}>
-        {title}
-      </Td>
+      <Td>{title}</Td>
       <Td>{price}</Td>
       <Td>{stocks}</Td>
       {stocks < 2 ? (

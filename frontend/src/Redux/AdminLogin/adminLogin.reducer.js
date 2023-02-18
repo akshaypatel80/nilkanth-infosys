@@ -7,7 +7,6 @@ import {
 
 const token = localStorage.getItem("AdminToken");
 const data = JSON.parse(localStorage.getItem("AdminData")) || {};
-
 const initialValue = {
   isAuth: !!token,
   token: token,

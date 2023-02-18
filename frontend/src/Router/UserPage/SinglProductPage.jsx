@@ -69,8 +69,12 @@ const SinglProductPage = () => {
   };
   const quantity = (total) => {
     let q = new Array(total).fill(1);
-    for (let i = 1; i < total; i++) {
-      q[i] = i;
+    if (total <= 0) {
+      return;
+    } else {
+      for (let i = 0; i <= total; i++) {
+        q[i] = i;
+      }
     }
     return q;
   };
@@ -114,6 +118,12 @@ const SinglProductPage = () => {
               {data.Onsale}
             </Text>
           ) : null}
+          {data.Quantity <= 1 ? (
+            <Image
+              src="https://www.kindpng.com/picc/m/265-2657343_graphics-hd-png-download.png"
+              width={"30%"}
+            />
+          ) : null}
           <Text fontSize={["23px", "25px"]} fontWeight={"500"}>
             {data.Title}
           </Text>
@@ -154,6 +164,7 @@ const SinglProductPage = () => {
           <Select
             placeholder="Select Quntity"
             onChange={(e) => setProductQuntity(e.target.value)}
+            isDisabled={data.Quantity <= 1}
           >
             {qun.map((ele) => (
               <option value={ele}>{ele}</option>
@@ -161,6 +172,7 @@ const SinglProductPage = () => {
           </Select>
           <HStack pt={"20px"}>
             <Button
+              isDisabled={data.Quantity <= 1}
               colorScheme="blue"
               width={"40%"}
               size={"lg"}
@@ -173,6 +185,7 @@ const SinglProductPage = () => {
               Add to cart
             </Button>
             <Button
+              isDisabled={data.Quantity <= 1}
               colorScheme="blue"
               width={"40%"}
               size={"lg"}

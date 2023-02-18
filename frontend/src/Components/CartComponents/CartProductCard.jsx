@@ -4,12 +4,13 @@ import {
   Heading,
   HStack,
   Image,
+  Select,
   Stack,
   Text,
   useToast,
   VStack,
 } from "@chakra-ui/react";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { MdAdd } from "react-icons/md";
 import { BiMinus } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
@@ -28,22 +29,15 @@ const CartProductCard = ({
   category,
   img,
   price,
+  productQunt,
 }) => {
   const user = JSON.parse(localStorage.getItem("userData"));
   const dispatch = useDispatch();
   const toast = useToast();
+  const [productQuntity, setProductQuntity] = useState(qty);
   useEffect(() => {
     dispatch(getCartProduct(user[0]._id));
   }, [qty]);
-  const increaseQty = () => {
-    const newQty = qty + 1;
-    dispatch(updateQuntity(id, newQty, product));
-  };
-
-  const decreaseQty = () => {
-    const newQty = qty - 1;
-    dispatch(updateQuntity(id, newQty, product));
-  };
   const RemoveCart = () => {
     dispatch(deleteCart(id));
     toast({
@@ -54,6 +48,23 @@ const CartProductCard = ({
       isClosable: true,
       position: "top",
     });
+  };
+  const quantity = (total) => {
+    let q = new Array(total).fill(1);
+    if (total <= 1) {
+      return;
+    } else {
+      for (let i = 0; i < total; i++) {
+        q[i] = i;
+      }
+    }
+    return q;
+  };
+  let qun = quantity(productQunt);
+  console.log(qun);
+  const hendleCangeQut = (e) => {
+    setProductQuntity(e.target.value);
+    dispatch(updateQuntity(id, productQuntity, product));
   };
   return (
     <Stack
@@ -91,25 +102,19 @@ const CartProductCard = ({
           justifyContent={"space-between"}
           maxW={{ base: "250px", md: "100%" }}
         >
-          <HStack
-            p="5px"
-            minW={"100px"}
-            justifyContent="space-around"
-            border={"2px"}
-            borderColor="rgb(0,18,51)"
+          <Select
+            placeholder="Select Quntity"
+            onChange={hendleCangeQut}
+            isDisabled={qty <= 0}
+            value={qty}
+            width={"20%"}
           >
-            <Button disabled={qty === 1} onClick={decreaseQty}>
-              <BiMinus />
-            </Button>
-            <Heading fontSize={"17px"} fontWeight="400">
-              {qty}
-            </Heading>
-            <Button onClick={increaseQty} disabled={qty === 7}>
-              <MdAdd />
-            </Button>
-          </HStack>
-          <Heading fontSize={"22px"} color="rgb(0,18,51)" fontWeight="400">
-            ₹ {price * qty}
+            {qun.map((ele) => (
+              <option value={ele}>{ele}</option>
+            ))}
+          </Select>
+          <Heading fontSize={"20px"} color="rgb(0,18,51)" fontWeight="400">
+            ₹ {price * productQuntity}
           </Heading>
           <MdDelete
             cursor={"pointer"}
