@@ -23,18 +23,9 @@ const userSchema = mongoose.Schema(
       type: Number,
       require: true,
     },
-    wishlist: {
-      type: Array,
-    },
-    cartitem: {
-      type: Array,
-    },
     role: {
       type: String,
       default: "user",
-    },
-    orderlist: {
-      type: Array,
     },
   },
   {
