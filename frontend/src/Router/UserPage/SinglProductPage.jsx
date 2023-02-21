@@ -8,11 +8,15 @@ import {
   Button,
   Container,
   Flex,
+  FormControl,
+  FormLabel,
   HStack,
   Image,
+  Input,
   Select,
   Stack,
   Text,
+  Textarea,
   useToast,
 } from "@chakra-ui/react";
 import axios from "axios";
@@ -20,6 +24,10 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { addToCartData } from "../../Redux/cart/cart.action";
+import {
+  addReview,
+  getReview,
+} from "../../Redux/ProductReview/ProductReview.action";
 const getSinglProduct = async (id) => {
   try {
     let res = await axios.get(
@@ -37,22 +45,28 @@ const SinglProductPage = () => {
   const [productQuntity, setProductQuntity] = useState(0);
   const user = JSON.parse(localStorage.getItem("userData"));
   const { message, isError } = useSelector((store) => store.cart);
+  const { reviewData, msg } = useSelector((store) => store.review);
+  const [review, setReview] = useState("");
   const dispatch = useDispatch();
   const toast = useToast();
-  console.log(message);
   useEffect(() => {
     getSinglProduct(id).then((res) => {
       setData(res.totalProduct);
     });
   }, [id]);
+
+  useEffect(() => {
+    dispatch(getReview(id));
+  }, [msg]);
+  console.log(msg);
   const hendelAddtoCart = () => {
     const newcart = {
       userid: user[0]._id,
       product: data._id,
       Quantity: Number(productQuntity),
     };
-    console.log(newcart);
     dispatch(addToCartData(newcart));
+
     if (!isError) {
       toast({
         title: "",
@@ -91,6 +105,23 @@ const SinglProductPage = () => {
     dis = data.Description.split("|").map(String);
   }
   // console.log(data);
+  const hendelAddReview = () => {
+    let sendData = {
+      productId: id,
+      userId: user[0]._id,
+      comment: review,
+    };
+    dispatch(addReview(sendData));
+    toast({
+      title: "",
+      description: "Thank you for your Review!",
+      status: "success",
+      duration: 9000,
+      isClosable: true,
+      position: "top",
+    });
+    setReview("");
+  };
   return (
     <Container maxW={"80%"} pt={"25px"}>
       <Flex
@@ -205,7 +236,13 @@ const SinglProductPage = () => {
           </HStack>
         </Stack>
       </Flex>
-      <Accordion allowToggle>
+      <Accordion
+        allowToggle
+        m={"20"}
+        borderWidth="1px"
+        rounded="lg"
+        shadow="lg"
+      >
         <AccordionItem>
           <h2>
             <AccordionButton>
@@ -215,12 +252,54 @@ const SinglProductPage = () => {
               <AccordionIcon />
             </AccordionButton>
           </h2>
-          <AccordionPanel pb={4}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
+          <AccordionPanel>
+            <Flex
+              gap={"25px"}
+              alignItems={"center"}
+              justifyContent={"space-between"}
+            >
+              <FormControl isRequired>
+                <FormLabel>Add Product Review</FormLabel>
+                <Textarea
+                  type="text"
+                  onChange={(e) => setReview(e.target.value)}
+                  placeholder={"Write Review Hier"}
+                />
+              </FormControl>
+              <Button
+                width={{ base: "50%", sm: "50%", lg: "15%" }}
+                size={"lg"}
+                bg={"#052a62"}
+                color={"white"}
+                _hover={{
+                  bg: "#06419b",
+                }}
+                type={"submit"}
+                onClick={hendelAddReview}
+              >
+                Submit
+              </Button>
+            </Flex>
           </AccordionPanel>
+          {reviewData.map((item) => (
+            <Box textAlign={"left"} fontWeight={"600"}>
+              <AccordionPanel
+                borderWidth="3px"
+                rounded="lg"
+                shadow="lg"
+                p={"5"}
+              >
+                <Text
+                  fontSize={"25px"}
+                  fontWeight={"500"}
+                  textTransform={"capitalize"}
+                >
+                  {item.userId.first_name} {item.userId.last_name}
+                </Text>
+                <li>{item.comment}</li>
+              </AccordionPanel>
+            </Box>
+          ))}
         </AccordionItem>
       </Accordion>
     </Container>

@@ -5,10 +5,11 @@ import {
   SAVE_ERROR_MSG,
 } from "./ProductReview.type";
 const mainUrl = "http://localhost:8080";
-export const getReview = (productId) => async (dispatch) => {
+export const getReview = (id) => async (dispatch) => {
   try {
-    let res = await axios.get(`${mainUrl}/review/${productId}`);
+    let res = await axios.get(`${mainUrl}/review/${id}`);
     dispatch({ type: GET_ALL_REVIEW, payload: res.data });
+    // console.log(res.data.reviewData);
   } catch (error) {
     console.log(error.msg);
   }

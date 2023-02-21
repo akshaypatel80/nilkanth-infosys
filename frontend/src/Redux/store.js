@@ -7,6 +7,7 @@ import { userSignupReducer } from "./userSignup/userSignup.reducer";
 import { adminReducer } from "./AdminLogin/adminLogin.reducer";
 import { adminShowProductReducer } from "./AdminShowProduct/AdminShowProduct.reducer";
 import { adminAddProductReducer } from "./AdminAddProduct/AdminAddProduct.reducer";
+import { reviewReducer } from "./ProductReview/ProductReview.reducer";
 const rootReducer = combineReducers({
   userLogin: userLoginReducer,
   userSingup: userSignupReducer,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   adminAuth: adminReducer,
   adminShowProduct: adminShowProductReducer,
   adminAddProduct: adminAddProductReducer,
+  review: reviewReducer,
 });
 
 export const store = legacy_createStore(rootReducer, applyMiddleware(thunk));
