@@ -10,21 +10,21 @@ const BrandCrousel = () => {
   return (
     <div>
       <Swiper
-        slidesPerView={4}
+        slidesPerView={5}
         centeredSlides={true}
-        spaceBetween={1}
+        spaceBetween={2}
         grabCursor={true}
         autoplay={{
           delay: 1000,
         }}
         modules={[Navigation, Autoplay]}
-        navigation={true}
+        // navigation={true}
         className="mySwiper"
         loop={true}
       >
         {brandData.map((ele) => (
           <SwiperSlide key={ele.id}>
-            <Image src={ele.imageUrl} />
+            <Image width={"50%"} src={ele.imageUrl} />
           </SwiperSlide>
         ))}
       </Swiper>
