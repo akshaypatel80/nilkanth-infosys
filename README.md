@@ -1,4 +1,3 @@
-# faithful-lock-5927
 <h1 align="center">Nilkanth Infosys( Solo Project )</h1>
 
 <h3 align="center">It's a MERN Stack E-commerce website with all the major functionalities</h3>
