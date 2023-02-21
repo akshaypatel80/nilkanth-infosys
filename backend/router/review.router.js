@@ -9,8 +9,8 @@ reviewRouter.post("/", async (req, res) => {
       res.status(404).send({ msg: "Sorry! You Have to Login First" });
     }
 
-    let reviewData = await reviewModel.create({ comment, productId, userId });
-    res.send({ msg: "Thank you for your Review!", reviewData });
+    await reviewModel.create({ comment, productId, userId });
+    res.send({ msg: "Thank you for your Review!" });
   } catch (error) {
     res.status(500).send({ msg: "Somthing wen't Wrong" });
   }
@@ -20,7 +20,7 @@ reviewRouter.get("/:productId", async (req, res) => {
   try {
     let productId = req.params.productId;
     let reviewData = await reviewModel.find({ productId }).populate("userId");
-    res.send(reviewData);
+    res.send({ reviewData: reviewData });
   } catch (error) {
     res.status(500).send({ msg: "Somthing wen't Wrong" });
   }
