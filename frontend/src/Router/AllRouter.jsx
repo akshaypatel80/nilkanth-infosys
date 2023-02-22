@@ -11,6 +11,7 @@ import AdminLoginPage from "./AdminPage/AdminLoginPage";
 import AdminShowProduct from "./AdminPage/AdminShowProduct";
 import AdminUpdateProduct from "./AdminPage/AdminUpdateProduct";
 import CartPage from "./UserPage/CartPage";
+import DesktopPage from "./UserPage/DesktopPage";
 import HomePage from "./UserPage/HomePage";
 import LaptopPage from "./UserPage/LaptopPage";
 import LoginPage from "./UserPage/LoginPage";
@@ -53,6 +54,15 @@ const AllRouter = () => {
           <>
             <Navitem />
             <LaptopPage />
+          </>
+        }
+      ></Route>
+      <Route
+        path="/desktopAccessries"
+        element={
+          <>
+            <Navitem />
+            <DesktopPage />
           </>
         }
       ></Route>

@@ -23,6 +23,7 @@ export const navdata = [
   },
   {
     label: "Desktop Accessories",
+    href: "/desktopAccessries",
     children: [
       {
         label: "Monitor",

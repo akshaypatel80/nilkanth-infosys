@@ -135,7 +135,7 @@ const AdminAddProduct = () => {
             <Box width={{ base: "100%", sm: "100%" }}>
               <FormControl isRequired>
                 <FormLabel>Sub Category</FormLabel>
-                <Select onChange={hanldeChange} name="Subcategory" category>
+                <Select onChange={hanldeChange} name="Subcategory">
                   {product.Category === "LaptopAllinOne" && (
                     <option value="HP">HP</option>
                   )}
@@ -203,7 +203,7 @@ const AdminAddProduct = () => {
             </Box>
           </Stack>
           <Box width={{ base: "100%", sm: "100%" }}>
-            <FormControl isRequired>
+            <FormControl>
               <FormLabel>Product Description</FormLabel>
               <Textarea
                 type="text"
