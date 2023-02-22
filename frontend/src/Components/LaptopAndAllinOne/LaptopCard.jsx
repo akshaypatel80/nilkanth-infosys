@@ -1,8 +1,16 @@
 import { Box, Button, HStack, Image, Stack, Text } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import { AiOutlineHeart } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { getReview } from "../../Redux/ProductReview/ProductReview.action";
 const LaptopCard = ({ laptopData }) => {
+  const { reviewData } = useSelector((store) => store.review);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getReview(laptopData._id));
+  }, []);
+  console.log(reviewData.length);
   return (
     <Stack spacing={{ base: "4", md: "5" }}>
       <Box
@@ -61,7 +69,7 @@ const LaptopCard = ({ laptopData }) => {
           <HStack>
             <Text size="sm">{laptopData.rating}</Text>
             <Text fontSize="sm" color={"gray.400"}>
-              12 Reviews
+              {reviewData.length}
             </Text>
           </HStack>
           <HStack>
