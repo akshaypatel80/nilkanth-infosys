@@ -30,6 +30,9 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogout } from "../../Redux/userLogin/useLogin.action";
 import { FiChevronDown } from "react-icons/fi";
+import { BiCart } from "react-icons/bi";
+import { BsCartCheckFill } from "react-icons/bs";
+
 const Navitem = () => {
   const { isOpen, onToggle } = useDisclosure();
   const { isAuth, data } = useSelector((store) => store.userLogin);
@@ -131,9 +134,17 @@ const Navitem = () => {
                 </HStack>
               </MenuButton>
               <MenuList bg={"white"} borderColor={"gray.200"}>
-                <MenuItem>Profile</MenuItem>
                 <MenuItem>
-                  <Link to={"/user/cart"}>cart</Link>
+                  <HStack spacing={"44"}>
+                    <Link to={"/user/cart"}>Cart</Link>
+                    <BiCart fontSize={"25px"} />
+                  </HStack>
+                </MenuItem>
+                <MenuItem>
+                  <HStack spacing={"40"}>
+                    <Link to={"/user/order"}>Order</Link>
+                    <BsCartCheckFill fontSize={"20px"} />
+                  </HStack>
                 </MenuItem>
                 <MenuDivider />
                 <MenuItem onClick={() => dispatch(userLogout())}>

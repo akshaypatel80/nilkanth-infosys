@@ -8,13 +8,16 @@ import UserRequireAuth from "../hoc/UserRequireAuth";
 import AdminAddProductPage from "./AdminPage/AdminAddProductPage";
 import AdminDshboardPage from "./AdminPage/AdminDshboardPage";
 import AdminLoginPage from "./AdminPage/AdminLoginPage";
+import AdminShowOrderPage from "./AdminPage/AdminShowOrderPage";
 import AdminShowProduct from "./AdminPage/AdminShowProduct";
 import AdminUpdateProduct from "./AdminPage/AdminUpdateProduct";
+import AdminUserPage from "./AdminPage/AdminUserPage";
 import CartPage from "./UserPage/CartPage";
 import DesktopPage from "./UserPage/DesktopPage";
 import HomePage from "./UserPage/HomePage";
 import LaptopPage from "./UserPage/LaptopPage";
 import LoginPage from "./UserPage/LoginPage";
+import OrderListPage from "./UserPage/OrderListPage";
 import SignupPage from "./UserPage/SignupPage";
 import SinglProductPage from "./UserPage/SinglProductPage";
 
@@ -85,6 +88,15 @@ const AllRouter = () => {
         }
       ></Route>
       <Route
+        path="/user/order"
+        element={
+          <>
+            <Navitem />
+            <OrderListPage />
+          </>
+        }
+      ></Route>
+      <Route
         path="/singlProduct/:id"
         element={
           <UserRequireAuth>
@@ -144,6 +156,22 @@ const AllRouter = () => {
         element={
           <AdminRequireAuth>
             <AdminUpdateProduct />
+          </AdminRequireAuth>
+        }
+      ></Route>
+      <Route
+        path="/admin/order"
+        element={
+          <AdminRequireAuth>
+            <AdminShowOrderPage />
+          </AdminRequireAuth>
+        }
+      ></Route>
+      <Route
+        path="/admin/user"
+        element={
+          <AdminRequireAuth>
+            <AdminUserPage />
           </AdminRequireAuth>
         }
       ></Route>

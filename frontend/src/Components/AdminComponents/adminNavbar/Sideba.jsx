@@ -14,7 +14,7 @@ const Sideba = ({ onClose, display }) => {
     { name: "Dashboard", icon: FiPieChart, link: "/admin" },
     { name: "Product", icon: FiTrendingUp, link: "/admin/product" },
     { name: "User", icon: FiUser, link: "/admin/user" },
-    { name: "Cart", icon: FiShoppingCart, link: "/admin/cart" },
+    { name: "Order", icon: FiShoppingCart, link: "/admin/Order" },
   ];
 
   return (

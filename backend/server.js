@@ -12,12 +12,14 @@ const productRouter = require("./router/product.router");
 const cartRouter = require("./router/cart.router");
 const adminRouter = require("./router/admin.router");
 const reviewRouter = require("./router/review.router");
+const orderRouter = require("./router/order.router");
 
 app.use("/user", userRouter);
 app.use("/product", productRouter);
 app.use("/cart", cartRouter);
 app.use("/admin", adminRouter);
 app.use("/review", reviewRouter);
+app.use("/order", orderRouter);
 
 app.listen(port, async () => {
   try {

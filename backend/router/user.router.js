@@ -50,4 +50,27 @@ Router.post("/login", async (req, res) => {
   }
 });
 
+Router.get("/", async (req, res) => {
+  let { limit = 10, page = 1 } = req.query;
+  try {
+    const user = await User.find({})
+      .limit(limit)
+      .skip((page - 1) * limit);
+    const usercount = await User.countDocuments();
+    res.status(200).send({ user: user, count: usercount });
+  } catch (error) {
+    res.status(404).send({ msg: error.message });
+  }
+});
+
+Router.delete("/delete/:id", async (req, res) => {
+  const id = req.params.id;
+  try {
+    await User.findByIdAndDelete({ _id: id });
+    res.status(200).send({ msg: "delete product successfully" });
+  } catch (error) {
+    res.status(500).send({ msg: "Something Went Wrong!" });
+  }
+});
+
 module.exports = Router;
