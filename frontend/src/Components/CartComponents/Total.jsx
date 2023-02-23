@@ -8,11 +8,15 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { addOrder } from "../../Redux/Order/Order.action";
 
 const Total = () => {
-  const { message, isError, cartData } = useSelector((store) => store.cart);
+  const { cartData } = useSelector((store) => store.cart);
+  const { isLoding, isError } = useSelector((store) => store.order);
   const [total, settotal] = useState(0);
+  const dispatch = useDispatch();
   const toast = useToast();
   const totalData = () => {
     let data = 0;
@@ -22,6 +26,7 @@ const Total = () => {
 
     settotal(data);
   };
+
   useEffect(() => {
     totalData();
   }, [cartData]);
@@ -62,19 +67,30 @@ const Total = () => {
         <Heading fontSize="22px">Balance</Heading>
         <Heading fontSize="22px">₹ {(total * 18) / 100 + total} </Heading>
       </HStack>
-
-      <Button
-        bg={"#052a62"}
-        color={"white"}
-        _hover={{
-          bg: "#06419b",
-        }}
-        //   onClick={() => {
-        //     dispatch(Order(toast));
-        //   }}
-      >
-        Checkout
-      </Button>
+      {isLoding ? (
+        <Button
+          isLoading
+          loadingText="Loading"
+          colorScheme="facebook"
+          variant="outline"
+          spinnerPlacement="end"
+        >
+          <Link to={"/user/order"}>Checkout</Link>
+        </Button>
+      ) : (
+        <Button
+          bg={"#052a62"}
+          color={"white"}
+          _hover={{
+            bg: "#06419b",
+          }}
+          onClick={() => {
+            dispatch(addOrder());
+          }}
+        >
+          Checkout
+        </Button>
+      )}
     </Stack>
   );
 };
