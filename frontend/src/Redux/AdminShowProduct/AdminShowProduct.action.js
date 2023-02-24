@@ -1,11 +1,12 @@
 import axios from "axios";
 import {
   ADMIN_DELETE_PRODUCT,
+  ADMIN_PRODUCT_LODING,
   ADMIN_SHOW_PRODUCT,
   ADMIN_UPDATE_PRODUCT,
 } from "./AdminShowProduct.type";
 
-const mainUrl = "http://localhost:8080";
+const mainUrl = "https://nilkanth-infosys.onrender.com";
 const token = localStorage.getItem("AdminToken");
 const config = {
   headers: {
@@ -14,6 +15,7 @@ const config = {
 };
 // get product
 export const adminShowProducts = (page) => async (dispatch) => {
+  dispatch({type:ADMIN_PRODUCT_LODING})
   try {
     let res = await axios.get(`${mainUrl}/product?page=${page}`);
     dispatch({ type: ADMIN_SHOW_PRODUCT, payload: res.data });

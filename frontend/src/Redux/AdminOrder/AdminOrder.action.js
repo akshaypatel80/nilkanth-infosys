@@ -1,7 +1,12 @@
 import axios from "axios";
-import { DELETE_ORDER, GET_ALL_ORDER, UPDATE_ORDER } from "./AdminOrder.type";
+import {
+  DELETE_ORDER,
+  GET_ALL_ORDER,
+  LODING_ORDER,
+  UPDATE_ORDER,
+} from "./AdminOrder.type";
 
-const mainUrl = "http://localhost:8080";
+const mainUrl = "https://nilkanth-infosys.onrender.com";
 const token = localStorage.getItem("AdminToken");
 
 const config = {
@@ -11,6 +16,7 @@ const config = {
 };
 
 export const getAllOrder = (page) => async (dispatch) => {
+  dispatch({ type: LODING_ORDER });
   try {
     let res = await axios.get(`${mainUrl}/order?page=${page}`, config);
     dispatch({ type: GET_ALL_ORDER, payload: res.data });

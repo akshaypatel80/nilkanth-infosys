@@ -4,7 +4,7 @@ import {
   GET_ALL_REVIEW,
   SAVE_ERROR_MSG,
 } from "./ProductReview.type";
-const mainUrl = "http://localhost:8080";
+const mainUrl = "https://nilkanth-infosys.onrender.com";
 export const getReview = (id) => async (dispatch) => {
   try {
     let res = await axios.get(`${mainUrl}/review/${id}`);

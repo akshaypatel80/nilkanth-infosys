@@ -1,6 +1,7 @@
 import {
   ADMIN_DELETE_PRODUCT,
   ADMIN_PRODUCT,
+  ADMIN_PRODUCT_LODING,
   ADMIN_SHOW_PRODUCT,
   ADMIN_SOWONE_PRODUCT,
   ADMIN_UPDATE_PRODUCT,
@@ -14,6 +15,7 @@ const initialValue = {
   product: 0,
   deletemsg: null,
   updatemsg: null,
+  isLoding: false,
 };
 export const adminShowProductReducer = (
   state = initialValue,
@@ -25,6 +27,7 @@ export const adminShowProductReducer = (
         ...state,
         adminProduct: payload.products,
         product: payload.totalProduct,
+        isLoding: false,
       };
     }
     case ADMIN_DELETE_PRODUCT: {
@@ -38,18 +41,27 @@ export const adminShowProductReducer = (
         ...state,
         productData: payload.data,
         updatemsg: payload.msg,
+        isLoding: false,
       };
     }
     case ADMIN_SOWONE_PRODUCT: {
       return {
         ...state,
         oneProduct: payload.data,
+        isLoding: false,
       };
     }
     case ADMIN_PRODUCT: {
       return {
         ...state,
         adminallProduct: payload.product,
+        isLoding: false,
+      };
+    }
+    case ADMIN_PRODUCT_LODING: {
+      return {
+        ...state,
+        isLoding: true,
       };
     }
     default:
