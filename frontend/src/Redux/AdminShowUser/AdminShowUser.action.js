@@ -1,7 +1,7 @@
 import axios from "axios";
-import { DELETE_USER, GET_ALL_USER } from "./AdminShowUser.type";
+import { DELETE_USER, GET_ALL_USER, LODING_USER } from "./AdminShowUser.type";
 
-const mainUrl = "http://localhost:8080";
+const mainUrl = "https://nilkanth-infosys.onrender.com";
 const token = localStorage.getItem("AdminToken");
 
 const config = {
@@ -10,6 +10,7 @@ const config = {
   },
 };
 export const getAllUser = (page) => async (dispatch) => {
+  dispatch({ type: LODING_USER });
   try {
     let res = await axios.get(`${mainUrl}/user?page=${page}`, config);
     dispatch({ type: GET_ALL_USER, payload: res.data });

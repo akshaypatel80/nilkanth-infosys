@@ -1,9 +1,11 @@
 import {
   Flex,
   Heading,
+  Skeleton,
   Table,
   TableContainer,
   Tbody,
+  Td,
   Th,
   Thead,
   Tr,
@@ -16,7 +18,9 @@ import Pagination from "../../Pagination";
 import AdminUserCard from "./AdminUserCard";
 
 const AdminUserComponent = () => {
-  const { allUser, userCount } = useSelector((store) => store.adminUser);
+  const { allUser, userCount, isLoding } = useSelector(
+    (store) => store.adminUser
+  );
   const dispatch = useDispatch();
   const toast = useToast();
   const [page, setPage] = useState(1);
@@ -44,19 +48,44 @@ const AdminUserComponent = () => {
               <Th>Delete</Th>
             </Tr>
           </Thead>
-          <Tbody>
-            {allUser.map((item) => (
-              <AdminUserCard
-                key={item._id}
-                id={item._id}
-                first_name={item.first_name}
-                last_name={item.last_name}
-                email={item.email}
-                mobile={item.mobile}
-                page={page}
-              />
-            ))}
-          </Tbody>
+          {isLoding ? (
+            <Tbody>
+              <Tr>
+                <Td>
+                  <Skeleton height="20px" />
+                </Td>
+                <Td>
+                  <Skeleton height="20px" />
+                </Td>
+                <Td>
+                  <Skeleton height="20px" />
+                </Td>
+                <Td>
+                  <Skeleton height="20px" />
+                </Td>
+                <Td>
+                  <Skeleton height="20px" />
+                </Td>
+                <Td>
+                  <Skeleton height="20px" />
+                </Td>
+              </Tr>
+            </Tbody>
+          ) : (
+            <Tbody>
+              {allUser.map((item) => (
+                <AdminUserCard
+                  key={item._id}
+                  id={item._id}
+                  first_name={item.first_name}
+                  last_name={item.last_name}
+                  email={item.email}
+                  mobile={item.mobile}
+                  page={page}
+                />
+              ))}
+            </Tbody>
+          )}
         </Table>
       </TableContainer>
       <Flex align={"center"} justifyContent={"center"} p={"25px"}>

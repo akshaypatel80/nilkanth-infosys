@@ -3,6 +3,9 @@ import {
   Flex,
   Heading,
   Image,
+  Skeleton,
+  Spinner,
+  Stack,
   Table,
   TableContainer,
   Tbody,
@@ -22,7 +25,7 @@ import { adminShowProducts } from "../../../Redux/AdminShowProduct/AdminShowProd
 import Pagination from "../../Pagination";
 import AdminProductShowCard from "./AdminProductShowCard";
 const AdminGetProduct = () => {
-  const { adminProduct, product } = useSelector(
+  const { adminProduct, product, isLoding } = useSelector(
     (store) => store.adminShowProduct
   );
   const dispatch = useDispatch();
@@ -66,19 +69,47 @@ const AdminGetProduct = () => {
               <Th>Delete</Th>
             </Tr>
           </Thead>
-          <Tbody>
-            {adminProduct.map((item) => (
-              <AdminProductShowCard
-                key={item._id}
-                id={item._id}
-                img={item.Thumbnail}
-                title={item.Title}
-                price={item.Price}
-                stocks={item.Quantity}
-                page={page}
-              />
-            ))}
-          </Tbody>
+          {isLoding ? (
+            <Tbody>
+              <Tr>
+                <Td>
+                  <Skeleton height="20px" />
+                </Td>
+                <Td>
+                  <Skeleton height="20px" />
+                </Td>
+                <Td>
+                  <Skeleton height="20px" />
+                </Td>
+                <Td>
+                  <Skeleton height="20px" />
+                </Td>
+                <Td>
+                  <Skeleton height="20px" />
+                </Td>
+                <Td>
+                  <Skeleton height="20px" />
+                </Td>
+                <Td>
+                  <Skeleton height="20px" />
+                </Td>
+              </Tr>
+            </Tbody>
+          ) : (
+            <Tbody>
+              {adminProduct.map((item) => (
+                <AdminProductShowCard
+                  key={item._id}
+                  id={item._id}
+                  img={item.Thumbnail}
+                  title={item.Title}
+                  price={item.Price}
+                  stocks={item.Quantity}
+                  page={page}
+                />
+              ))}
+            </Tbody>
+          )}
         </Table>
       </TableContainer>
       <Flex align={"center"} justifyContent={"center"} p={"25px"}>
