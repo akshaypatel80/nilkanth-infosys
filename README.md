@@ -56,7 +56,7 @@
 It’s Solo project where we've used MERN stack to build the Nilkanth Infosys with our creativity along with frontend and backend integration
 its Fully Responsive. Nilkanth Infosys is an E-Commerce Website who deals with the computer accessories and serves . Created Carts, Products, Users, Admin API ( Back-End ).
 
-<!-- ## Signup Page
+## Signup Page
 ![SignupPage](https://github.com/akshaypatel80/nilkanth-infosys/blob/main/frontend/public/Screenshorts/Screenshot%20(174).png)
 
 ## Products Page
