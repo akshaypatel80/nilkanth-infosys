@@ -56,23 +56,37 @@
 It’s Solo project where we've used MERN stack to build the Nilkanth Infosys with our creativity along with frontend and backend integration
 its Fully Responsive. Nilkanth Infosys is an E-Commerce Website who deals with the computer accessories and serves . Created Carts, Products, Users, Admin API ( Back-End ).
 
-<!-- ## Home Page
-![homePage](https://github.com/vraj79/faithful-lock-5927/blob/fw20_1138_day-4/frontend/public/project_ss/Screenshot%20(62).png)
+<!-- ## Signup Page
+![SignupPage](https://github.com/akshaypatel80/nilkanth-infosys/blob/main/frontend/public/Screenshorts/Screenshot%20(174).png)
 
 ## Products Page
-![ProductsPage](https://github.com/vraj79/faithful-lock-5927/blob/fw20_1138_day-4/frontend/public/project_ss/Screenshot%20(64).png)
+![ProductsPage](https://github.com/akshaypatel80/nilkanth-infosys/blob/main/frontend/public/Screenshorts/Screenshot%20(166).png)
 
-## Admin Dashboard Page
-![AdminDashboardPage](https://github.com/vraj79/faithful-lock-5927/blob/fw20_1138_day-4/frontend/public/project_ss/Screenshot%20(65).png)
+## Single Product Page
+![SingleProductPage](https://github.com/akshaypatel80/nilkanth-infosys/blob/main/frontend/public/Screenshorts/Screenshot%20(171).png)
 
 ## Admin Products Page
 ![AdminProductsPage](https://github.com/vraj79/faithful-lock-5927/blob/fw20_1138_day-4/frontend/public/project_ss/Screenshot%20(66).png)
 
-## Login Page
-![login](https://github.com/vraj79/faithful-lock-5927/blob/fw20_1138_day-4/frontend/public/project_ss/Screenshot%20(68).png)
+## Product Review 
+![ProductReview](https://github.com/akshaypatel80/nilkanth-infosys/blob/main/frontend/public/Screenshorts/Screenshot%20(172).png)
 
-## Carousel Page
-![Carousel](https://github.com/vraj79/faithful-lock-5927/blob/fw20_1138_day-4/frontend/public/project_ss/Screenshot%20(69).png)
+## Cart Page
+![CartPage](https://github.com/akshaypatel80/nilkanth-infosys/blob/main/frontend/public/Screenshorts/Screenshot%20(173).png)
 
-## Payment Page
-![Payment](https://github.com/vraj79/faithful-lock-5927/blob/fw20_1138_day-4/frontend/public/project_ss/Screenshot%20(67).png) -->
+## Order Status
+![OrderStatus](https://github.com/akshaypatel80/nilkanth-infosys/blob/main/frontend/public/Screenshorts/Screenshot%20(175).png) 
+
+## Admin Product Page
+![AdminProduct](https://github.com/akshaypatel80/nilkanth-infosys/blob/main/frontend/public/Screenshorts/Screenshot%20(167).png)
+
+## Admin Add And Update Product Page
+![Admin Add And Update Product Page](https://github.com/akshaypatel80/nilkanth-infosys/blob/main/frontend/public/Screenshorts/Screenshot%20(168).png)
+
+## Admin Handle User
+![Admin Handle User](https://github.com/akshaypatel80/nilkanth-infosys/blob/main/frontend/public/Screenshorts/Screenshot%20(169).png)
+
+## Admin Handle Order
+![Admin Handle Order](https://github.com/akshaypatel80/nilkanth-infosys/blob/main/frontend/public/Screenshorts/Screenshot%20(170).png)
+
+
